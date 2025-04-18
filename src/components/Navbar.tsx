@@ -17,7 +17,12 @@ import { ThemeSwitch } from '@/components/ThemeSwitch.tsx'
 
 export const Navbar = () => {
   return (
-    <HeroUINavbar maxWidth="full" position="sticky" className="flex justify-between items-end">
+    <HeroUINavbar
+      maxWidth="full"
+      position="sticky"
+      className="flex justify-between items-end"
+      isBordered
+    >
       <NavbarContent>
         <NavbarBrand className="gap-3 max-w-fit">
           <Link className="flex justify-start items-center gap-1" color="foreground" href="/">
