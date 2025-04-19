@@ -14,7 +14,7 @@ export type ModalProps = {
 
 export const BasicModal = ({ isOpen, onClose, onSave, initialValues, children }: ModalProps) => {
   return (
-    <Modal isOpen={isOpen} placement="top-center">
+    <Modal isOpen={isOpen} placement="top-center" onClose={onClose}>
       <ModalContent>
         <Formik initialValues={initialValues} onSubmit={onSave} enableReinitialize>
           <Form>

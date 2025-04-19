@@ -21,7 +21,6 @@ export const BasicInput = ({
   minLength = 3,
   maxLength = 100,
   variant = 'bordered',
-  // errorMessage = 'Required field',
   ...props
 }: InputPropsType) => {
   const [field] = useField(name)

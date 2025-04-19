@@ -14,8 +14,11 @@ import clsx from 'clsx'
 import { Logo } from '@/components/icons'
 import { navItems } from '@/utils/nav-items.ts'
 import { ThemeSwitch } from '@/components/ThemeSwitch.tsx'
+import { useLocation } from 'react-router-dom'
 
 export const Navbar = () => {
+  const location = useLocation()
+
   return (
     <HeroUINavbar
       maxWidth="full"
@@ -25,20 +28,19 @@ export const Navbar = () => {
     >
       <NavbarContent>
         <NavbarBrand className="gap-3 max-w-fit">
-          <Link className="flex justify-start items-center gap-1" color="foreground" href="/">
+          <div className="flex justify-start items-center gap-1">
             <Logo />
-            <p className="font-bold text-inherit">MemeHub</p>
-          </Link>
+          </div>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex justify-end" justify="end">
         {navItems.map((item) => (
-          <NavbarItem key={item.href}>
+          <NavbarItem key={item.href} isActive={item.href === location.pathname}>
             <Link
               className={clsx(
-                linkStyles({ color: 'foreground' }),
-                'data-[active=true]:text-primary data-[active=true]:font-medium',
+                linkStyles({ color: item.href === location.pathname ? 'primary' : 'foreground' }),
+                'data-[active=true]:text-primary data-[active=true]:font-bold',
               )}
               color="foreground"
               href={item.href}

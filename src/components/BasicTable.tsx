@@ -15,26 +15,58 @@ import { useState } from 'react'
 import { BasicModal } from '@/components/BasicModal.tsx'
 import { useDispatch } from 'react-redux'
 import { BasicInput } from '@/components/BasicInput.tsx'
-import { urlRegex } from '@/utils/validation.ts'
+import { likesRegex, urlRegex } from '@/utils/validation.ts'
+import { Link } from '@heroui/link'
 
+enum ColumnsEnum {
+  ID = 'id',
+  NAME = 'name',
+  LIKES = 'likes',
+  LINK = 'link',
+  ACTIONS = 'actions',
+}
 const columns = [
-  { key: 'id', label: 'ID' },
-  { key: 'name', label: 'Name' },
-  { key: 'likes', label: 'Likes' },
-  { key: 'link', label: 'Link' },
-  { key: 'actions', label: 'Actions' },
+  { key: ColumnsEnum.ID, label: 'ID' },
+  { key: ColumnsEnum.NAME, label: 'Name' },
+  { key: ColumnsEnum.LIKES, label: 'Likes' },
+  { key: ColumnsEnum.LINK, label: 'Link' },
+  { key: ColumnsEnum.ACTIONS, label: 'Actions' },
 ]
 
 export const BasicTable = () => {
   const memesById = useSelector(getMemesById)
-
   const [editedMemeId, setEditedMemeId] = useState<string | null>(null)
   const dispatch = useDispatch()
 
   const handleSave = (values: MemeType) => {
     dispatch(updateMeme(values))
-
     setEditedMemeId(null)
+  }
+
+  const columnMapping: Record<string, (value: string) => React.ReactNode> = {
+    id: (value) => <span>{value}</span>,
+    name: (value) => <strong>{value}</strong>,
+    likes: (value) => <span>{value}</span>,
+    link: (value) => (
+      <Link isBlock href={value} target="_blank" rel="noopener noreferrer">
+        {value}
+      </Link>
+    ),
+    actions: (id) => (
+      <Button
+        className="bg-gradient-to-tr from-blue-500 to-purple-500 text-white shadow-lg"
+        onPress={() => setEditedMemeId(id)}
+      >
+        Edit
+      </Button>
+    ),
+  }
+
+  const getCellValue = (item: MemeType, columnKey: string) => {
+    const value = getKeyValue(item, columnKey) as string
+    const wrappedValue = columnMapping[columnKey]
+
+    return wrappedValue ? wrappedValue(columnKey === ColumnsEnum.ACTIONS ? item.id : value) : value
   }
 
   return (
@@ -45,21 +77,16 @@ export const BasicTable = () => {
         </TableHeader>
 
         <TableBody>
-          {Object.values(memesById).map((item) => (
+          {Object.values(memesById).map((item: MemeType) => (
             <TableRow key={item.id}>
               {columns.map((column) => (
-                <TableCell key={column.key}>
-                  {column.key === 'actions' ? (
-                    <Button onPress={() => setEditedMemeId(item.id)}>Edit</Button>
-                  ) : (
-                    getKeyValue(item, column.key)
-                  )}
-                </TableCell>
+                <TableCell key={column.key}>{getCellValue(item, column.key)}</TableCell>
               ))}
             </TableRow>
           ))}
         </TableBody>
       </Table>
+
       {editedMemeId && (
         <BasicModal
           isOpen={Boolean(memesById)}
@@ -69,7 +96,7 @@ export const BasicTable = () => {
         >
           <BasicInput name="id" label="Id" isDisabled />
           <BasicInput name="name" label="Name" isRequired />
-          <BasicInput name="likes" label="Likes" isDisabled />
+          <BasicInput name="likes" label="Likes" isRequired pattern={likesRegex} minLength={0} />
           <BasicInput name="link" label="Link" pattern={urlRegex} isRequired />
         </BasicModal>
       )}
