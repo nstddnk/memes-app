@@ -94,6 +94,7 @@ export default tseslint.config(
           {
             selector: 'typeLike',
             format: ['PascalCase'],
+            suffix: ['Type', 'Props'],
           },
           {
             selector: 'class',
@@ -107,7 +108,7 @@ export default tseslint.config(
           {
             selector: 'typeAlias',
             format: ['PascalCase'],
-            suffix: ['Type'],
+            suffix: ['Type', 'Props'],
             filter: {
               regex: '(Store)$',
               match: false,

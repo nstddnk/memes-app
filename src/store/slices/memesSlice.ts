@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { RootState } from '../store'
+import { RootStateType } from '../store'
 import { MemeType } from '@/interfaces/meme.interace.ts'
 
 const memes = [
@@ -96,5 +96,5 @@ export const { updateMeme } = memesSlice.actions
 
 export default memesSlice.reducer
 
-export const getMemesById = (state: RootState) => state.memes.byId
-export const getMemesListIds = (state: RootState) => Object.keys(getMemesById(state))
+export const getMemesById = (state: RootStateType) => state.memes.byId
+export const getMemesListIds = (state: RootStateType) => Object.keys(getMemesById(state))

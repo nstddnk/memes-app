@@ -12,13 +12,7 @@ export const BasicList = () => {
       {Object.values(memesById).map(({ id, name, likes, link }) => (
         <Card key={id} className="flex flex-col">
           <CardHeader>
-            <Image
-              isBlurred
-              alt={name}
-              // className="m-5"
-              src={link}
-              // width={240}
-            />
+            <Image isBlurred alt={name} src={link} />
           </CardHeader>
 
           <CardBody className="flex-1">
