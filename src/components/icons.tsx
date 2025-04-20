@@ -91,38 +91,18 @@ export const SunFilledIcon = ({ size = 24, width, height, ...props }: IconSvgPro
   </svg>
 )
 
-export const HeartFilledIcon = ({ size = 24, width, height, ...props }: IconSvgProps) => (
-  <svg
-    aria-hidden="true"
-    focusable="false"
-    height={size || height}
-    role="presentation"
-    viewBox="0 0 24 24"
-    width={size || width}
-    {...props}
-  >
-    <path
-      d="M12.62 20.81c-.34.12-.9.12-1.24 0C8.48 19.82 2 15.69 2 8.69 2 5.6 4.49 3.1 7.56 3.1c1.82 0 3.43.88 4.44 2.24a5.53 5.53 0 0 1 4.44-2.24C19.51 3.1 22 5.6 22 8.69c0 7-6.48 11.13-9.38 12.12Z"
-      fill="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={1.5}
-    />
-  </svg>
-)
-
 export const Heart = () => (
   <svg height={18} viewBox="0 0 24 24" width={18} xmlns="http://www.w3.org/2000/svg">
     <defs>
       <linearGradient id="heartGradient" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stopColor="#3b82f6" /> {/* Синий (from-blue-500) */}
-        <stop offset="100%" stopColor="#a855f7" /> {/* Фиолетовый (to-purple-500) */}
+        <stop offset="0%" stopColor="#3b82f6" />
+        <stop offset="100%" stopColor="#a855f7" />
       </linearGradient>
     </defs>
     <path
       d="M12.62 20.81c-.34.12-.9.12-1.24 0C8.48 19.82 2 15.69 2 8.69 2 5.6 4.49 3.1 7.56 3.1c1.82 0 3.43.88 4.44 2.24a5.53 5.53 0 0 1 4.44-2.24C19.51 3.1 22 5.6 22 8.69c0 7-6.48 11.13-9.38 12.12Z"
-      fill="url(#heartGradient)" // Привязка градиента
-      stroke="url(#heartGradient)" // Привязка градиента к обводке
+      fill="url(#heartGradient)"
+      stroke="url(#heartGradient)"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1.5}

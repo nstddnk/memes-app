@@ -48,7 +48,13 @@ export const BasicTable = () => {
     name: (value) => <strong>{value}</strong>,
     likes: (value) => <span>{value}</span>,
     link: (value) => (
-      <Link isBlock href={value} target="_blank" rel="noopener noreferrer">
+      <Link
+        isBlock
+        href={value}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block max-w-[450px] truncate whitespace-nowrap overflow-hidden text-ellipsis"
+      >
         {value}
       </Link>
     ),
@@ -70,15 +76,15 @@ export const BasicTable = () => {
   }
 
   return (
-    <div className="flex align-center justify-center">
-      <Table aria-label="Meme table" className="max-w-6xl">
+    <div className="flex align-center justify-center ">
+      <Table aria-label="Meme table" className="max-w-7xl">
         <TableHeader columns={columns}>
           {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
         </TableHeader>
 
         <TableBody>
           {Object.values(memesById).map((item: MemeType) => (
-            <TableRow key={item.id}>
+            <TableRow  key={item.id}>
               {columns.map((column) => (
                 <TableCell key={column.key}>{getCellValue(item, column.key)}</TableCell>
               ))}

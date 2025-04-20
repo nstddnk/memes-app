@@ -25,6 +25,7 @@ export const Navbar = () => {
       position="sticky"
       className="flex justify-between items-end"
       isBordered
+      height="3.5rem"
     >
       <NavbarContent>
         <NavbarBrand className="gap-3 max-w-fit">
