@@ -76,7 +76,7 @@ export const BasicTable = () => {
   }
 
   return (
-    <div className="flex align-center justify-center ">
+    <div className="overflow-x-auto">
       <Table aria-label="Meme table" className="max-w-7xl">
         <TableHeader columns={columns}>
           {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
@@ -84,7 +84,7 @@ export const BasicTable = () => {
 
         <TableBody>
           {Object.values(memesById).map((item: MemeType) => (
-            <TableRow  key={item.id}>
+            <TableRow key={item.id}>
               {columns.map((column) => (
                 <TableCell key={column.key}>{getCellValue(item, column.key)}</TableCell>
               ))}

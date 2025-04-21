@@ -64,11 +64,13 @@ export const Navbar = () => {
           {navItems.map((item, index) => (
             <NavbarMenuItem key={`${item.href}-${index}`}>
               <Link
-                color={
-                  index === 2 ? 'primary' : index === navItems.length - 1 ? 'danger' : 'foreground'
-                }
+                className={clsx(
+                  'text-lg',
+                  item.href === location.pathname
+                    ? 'accent-primary font-bold'
+                    : 'text-white hover:text-gray-300',
+                )}
                 href={item.href}
-                size="lg"
               >
                 {item.name}
               </Link>
