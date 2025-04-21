@@ -12,10 +12,7 @@ export const BasicList = () => {
     <div className="flex justify-center">
       <div className="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-4 gap-8 p-0 max-w-7xl w-full">
         {Object.values(memesById).map(({ id, name, likes, link }) => (
-          <Card
-            key={id}
-            className="flex flex-col w-full"
-          >
+          <Card key={id} className="flex flex-col w-full">
             <CardHeader>
               <ImageWithFallback src={link} alt={name} />
             </CardHeader>

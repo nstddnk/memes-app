@@ -50,8 +50,8 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="flex sm:hidden" justify="end">
-        <NavbarMenuToggle />
         <ThemeSwitch />
+        <NavbarMenuToggle />
       </NavbarContent>
 
       <NavbarMenu className="sm:hidden">

@@ -5,7 +5,6 @@ import { HeroProvider } from '@/Provider.tsx'
 import { RoutesEnum } from '@/utils/enums/routes.enum.ts'
 import { MemesList } from '@/pages/MemesList.tsx'
 
-
 function App() {
   return (
     <HeroProvider>
