@@ -2,11 +2,11 @@ import { RoutesEnum } from '@/utils/enums/routes.enum.ts'
 
 export const navItems = [
   {
-    name: 'Home',
+    name: 'MemeBase',
     href: RoutesEnum.MemesTable,
   },
   {
-    name: 'List',
+    name: 'MemeStack',
     href: RoutesEnum.MemesList,
   },
 ]

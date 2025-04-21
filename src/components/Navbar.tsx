@@ -8,8 +8,6 @@ import {
   NavbarMenu,
   NavbarMenuItem,
 } from '@heroui/navbar'
-import { link as linkStyles } from '@heroui/theme'
-import clsx from 'clsx'
 
 import { Logo } from '@/components/icons'
 import { navItems } from '@/utils/nav-items.ts'
@@ -39,11 +37,7 @@ export const Navbar = () => {
         {navItems.map((item) => (
           <NavbarItem key={item.href} isActive={item.href === location.pathname}>
             <Link
-              className={clsx(
-                linkStyles({ color: item.href === location.pathname ? 'primary' : 'foreground' }),
-                'data-[active=true]:text-primary data-[active=true]:font-bold',
-              )}
-              color="foreground"
+              color={item.href === location.pathname ? 'primary' : 'foreground'}
               href={item.href}
             >
               {item.name}
@@ -57,6 +51,7 @@ export const Navbar = () => {
 
       <NavbarContent className="flex sm:hidden" justify="end">
         <NavbarMenuToggle />
+        <ThemeSwitch />
       </NavbarContent>
 
       <NavbarMenu className="sm:hidden">
@@ -64,13 +59,8 @@ export const Navbar = () => {
           {navItems.map((item, index) => (
             <NavbarMenuItem key={`${item.href}-${index}`}>
               <Link
-                className={clsx(
-                  'text-lg',
-                  item.href === location.pathname
-                    ? 'accent-primary font-bold'
-                    : 'text-white hover:text-gray-300',
-                )}
                 href={item.href}
+                color={item.href === location.pathname ? 'primary' : 'foreground'}
               >
                 {item.name}
               </Link>
